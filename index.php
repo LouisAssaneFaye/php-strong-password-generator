@@ -1,23 +1,11 @@
 <?php
-
-    $lenght = null;
+    include_once __DIR__ . '/functions.php';
     if(empty($_GET['lenght'])){
-        echo 'select a lenght';
+
     } else { 
         $lenght = $_GET['lenght'];
         $password = generateRandomPassword($_GET['lenght']);   
     }
-
-    function generateRandomPassword($length) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[random_int(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
-
 
 ?>
 
@@ -39,9 +27,14 @@
     <input type="submit" value="check">
     </form>  
    <h2>
-       <?php
+       <?php 
+           if (!empty($_GET['lenght'])){
            echo " Your generated password is : $password " ;
+           } else{ 
+           echo " select a lenght for you password! " ;
+           }
        ?>
+       
    </h2>
     
 </body>
